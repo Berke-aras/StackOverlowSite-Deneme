@@ -1,0 +1,36 @@
+.sponsors {
+    padding: 40px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sponsors-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 40px;
+}
+
+.sponsors-container p {
+    color: rgb(112, 128, 144);
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.sponsor-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    width: 70%;
+}
+
+.img-gallery {
+    width: 120px;
+}
