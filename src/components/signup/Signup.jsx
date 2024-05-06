@@ -6,11 +6,24 @@ import { TfiCup } from "react-icons/tfi";
 import Navbar from "../Navbar/Navbar";
 import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
+import { Toaster } from "react-hot-toast";
+
+import firebase, { register } from "../../Firebase";
 
 const Signup = () => {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const user = await register(email, password);
+        console.log(user);
+    };
+
     return (
         <>
             <Navbar />
+            <Toaster />
             <div className="signup">
                 <div className="signup-container">
                     <div className="signup-content1">
@@ -70,19 +83,34 @@ const Signup = () => {
                                 privacy policy.
                             </p>
                         </div>
-                        <form action="" className="signup-form">
+                        <form
+                            action=""
+                            className="signup-form"
+                            onSubmit={handleSubmit}
+                        >
                             <label htmlFor="">Email</label>
-                            <input type="text" />
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+
                             <label htmlFor="">Password</label>
-                            <input type="text" />
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                             <p>
                                 Must contain 8+ characters, including at least 1
                                 letter and 1 number.
                             </p>
+
                             <input
                                 type="submit"
                                 value="Sign up"
                                 className="signup-submit"
+                                disabled={!email || !password}
                             />
                         </form>
 

@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import Navbar from "../Navbar/Navbar";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaSquareFacebook } from "react-icons/fa6";
+import { Toaster } from "react-hot-toast";
+
+import firebase, { login } from "../../Firebase";
 
 const Login = () => {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const user = await login(email, password);
+        console.log(user);
+    };
     return (
         <>
             <Navbar />
+            <Toaster />
             <div className="login">
                 <div className="login-container">
                     <div className="login-logo">
@@ -44,20 +56,29 @@ const Login = () => {
                     </a>
 
                     <div className="login-form">
-                        <form className="form">
+                        <form className="form" onSubmit={handleSubmit}>
                             <label htmlFor="">Email</label>
-                            <input type="text" className="login-input" />
+                            <input
+                                type="email"
+                                className="login-input"
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
 
                             <div className="forgot">
                                 <label htmlFor="">Password</label>
                                 <a href="">Forgot Password ?</a>
                             </div>
-                            <input type="text" className="login-input" />
+                            <input
+                                type="password"
+                                className="login-input"
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
 
                             <input
                                 type="submit"
                                 value="Login"
                                 className="submit"
+                                disabled={!email || !password}
                             />
 
                             <div className="login-hr"></div>

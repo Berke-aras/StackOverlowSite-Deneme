@@ -7,6 +7,7 @@ import Home2 from "./components/home2/Home2";
 import Home3 from "./components/home3/Home3";
 import Home4 from "./components/home4/Home4";
 import Footer from "./components/footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 function App() {
     return (
